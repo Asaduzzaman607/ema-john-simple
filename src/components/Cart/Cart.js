@@ -1,13 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Cart = (props) => {
     const cart = props.cart;
-    const total = cart.reduce((total, prd)=> total + prd.price, 0);
-    // let total = 0;
-    // for (let i =0, i< cart.length; i++){
-    //     const product = cart[i];
-    //     total= total+ product.price;
-    // }
+    // const total = cart.reduce((total, prd)=> total + prd.price, 0);
+    let total = 0;
+    for (let i =0; i< cart.length; i++){
+        const product = cart[i];
+        total= total+ product.price;
+    }
 
     // Shipping cost
     let shipping = 0;
@@ -21,32 +22,39 @@ const Cart = (props) => {
             shipping=12.99
     }
 
+    // format number
+    const formatNumber = num => parseFloat(num.toFixed(2));
+
     // Tax
 
-    const tax = Math.round(total/10);
+    const tax =formatNumber(total/10);
 
     // Grand total cost
 
-    const grandTotal =(total + shipping);
+    const grandTotal =  formatNumber(total + tax + shipping);
 
-    // format number
+    
 
-    const formatNumber = num =>{
-        const precision = num.toFixed(2);
-        return  Number(precision);
-    }
+    // const formatNumber = num =>{
+    //     const precision = num.toFixed(2);
+    //     return  Number(precision);
+    // }
 
     // return html
 
 
     return (
         <div>
-            <h4>Order Summary</h4>
-    <p>Items Ordered: {cart.length}</p>
-    <p>Product Price: { formatNumber(total) }</p>
-    <p> <small>Shipping Cost:{shipping}</small> </p>
-    <p><small>Tax+ VAT : {formatNumber(tax)}</small></p>
-    <p>Total Price: {formatNumber(grandTotal)}</p>
+           <h3>Order Summery</h3>
+            <h5>Items ordered : {props.cart.length}</h5>
+            <h5>Total Price : ${total.toFixed(2)}</h5>
+            <h6>Shipping Cost : ${shipping}</h6>
+            <h6>Estimated Tax: ${tax}</h6>
+            <h5>Total Price :${grandTotal} </h5>
+            <Link to='/review'>
+            <button className='main-button'>Review Order</button>
+            </Link>
+            
         </div>
     );
 };

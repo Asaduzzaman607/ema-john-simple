@@ -9,6 +9,8 @@
 .product-name{
     color: blue;
     font-weight: 400;
+    margin-right: 5px;
+    padding: right 5px;
 }
 
 .main-button{
