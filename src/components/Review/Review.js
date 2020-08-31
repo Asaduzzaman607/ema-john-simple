@@ -13,6 +13,7 @@ const Review = () => {
     const handlePlaceOrder =()=>{
         setCart([]);
         processOrder();
+        console.log('place')
 
     }
 
@@ -48,7 +49,7 @@ const Review = () => {
             </div>
             <div className='cart-container'>
                 <Cart cart={cart}>
-                <button onclick={handlePlaceOrder} className='main-button'>Place Order</button>
+                <button onClick={handlePlaceOrder} className='main-button'>Place Order</button>
                 </Cart>
                 
 
