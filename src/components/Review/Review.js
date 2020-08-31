@@ -1,11 +1,28 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { getDatabaseCart } from '../../utilities/databaseManager';
+import { getDatabaseCart, removeFromDatabaseCart, processOrder } from '../../utilities/databaseManager';
 import fakeData from '../../fakeData';
 import ReviewItem from '../ReviewItem/ReviewItem';
+import Cart from '../Cart/Cart';
 
 const Review = () => {
-    const [cart, setCart]=useState([])
+    const [cart, setCart]=useState([]);
+
+    // order place handling
+
+    const handlePlaceOrder =()=>{
+        setCart([]);
+        processOrder();
+
+    }
+
+    // remove item handling
+
+    const handleRemoveItem = (productKey)=>{
+        const newCart=cart.filter(pd=>pd.key !==productKey);
+        setCart(newCart);
+        removeFromDatabaseCart(productKey);
+    }
 
     useEffect(()=>{
         //cart
@@ -22,11 +39,22 @@ const Review = () => {
 
 
     return (
-        <div>
-            <h1>Cart Items: {cart.length}</h1>
+        <div className='twin-container'>
+            <div className='product-container'>
             { 
-            cart.map(pd =><ReviewItem key={pd.key} product={pd}></ReviewItem>)
+            cart.map(pd =><ReviewItem handleRemoveItem={handleRemoveItem} key={pd.key} product={pd}></ReviewItem>)
             }
+
+            </div>
+            <div className='cart-container'>
+                <Cart cart={cart}>
+                <button onclick={handlePlaceOrder} className='main-button'>Place Order</button>
+                </Cart>
+                
+
+            </div>
+    
+            
         </div>
     );
 };
