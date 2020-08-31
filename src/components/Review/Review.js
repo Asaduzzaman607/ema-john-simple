@@ -4,16 +4,20 @@ import { getDatabaseCart, removeFromDatabaseCart, processOrder } from '../../uti
 import fakeData from '../../fakeData';
 import ReviewItem from '../ReviewItem/ReviewItem';
 import Cart from '../Cart/Cart';
+import happyImage from '../../images/giphy.gif'
 
 const Review = () => {
     const [cart, setCart]=useState([]);
+
+    const [orderPlaced, setOrderPlaced]= useState(false)
 
     // order place handling
 
     const handlePlaceOrder =()=>{
         setCart([]);
+        setOrderPlaced(true)
         processOrder();
-        console.log('place')
+        
 
     }
 
@@ -37,13 +41,21 @@ const Review = () => {
         });
         setCart(cartProducts)
     },[])
-
+    
+    // thank you gif
+     let thankYou;
+     if (orderPlaced){
+        thankYou = <img src={happyImage} alt=""/>
+     } 
 
     return (
         <div className='twin-container'>
             <div className='product-container'>
             { 
             cart.map(pd =><ReviewItem handleRemoveItem={handleRemoveItem} key={pd.key} product={pd}></ReviewItem>)
+            }
+            {
+                thankYou
             }
 
             </div>
