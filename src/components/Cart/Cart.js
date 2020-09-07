@@ -50,11 +50,11 @@ const Cart = (props) => {
     return (
         <div>
            <h3>Order Summery</h3>
-            <h5>Items ordered : {props.cart.length}</h5>
-            <h5>Total Quantity: {totalQuantity}</h5>
-            <h5>Total Price : ${total.toFixed(2)}</h5>
-            <h6>Shipping Cost : ${shipping}</h6>
-            <h6>Estimated Tax: ${tax}</h6>
+            <p>Items ordered : {props.cart.length}</p>
+            <p>Total Quantity: {totalQuantity}</p>
+            <p>Total Price : ${total.toFixed(2)}</p>
+            <p>Shipping Cost : ${shipping}</p>
+            <p>Estimated Tax: ${tax}</p>
             <h5>Total Price :${grandTotal} </h5>
             { 
             props.children
