@@ -1,16 +1,37 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
 .twin-container{
     display: flex;
     margin-top:20px;
+    display: grid;
+    grid-template-columns: 5fr  2fr;
+    grid-template-areas: 
+    "product-container  cart-container"
+    ;
+    
+
+
 }
 
 .product-container{
-    width: 70%;
-    margin-left: 20px;
+    width: 75%;
+    margin-left: 5px;
     margin-right: 5px;
-    border-right: 1px solid lightgray;
+    grid-area:product-container ;
+
 }
 
 .cart-container{
+    width: 25%;
     margin-left:5px;
-    padding-left:5px;
+    padding-left:20px;
+    border-left: 1px solid lightgray;
+    grid-area:cart-container ;
+   
+
 }
