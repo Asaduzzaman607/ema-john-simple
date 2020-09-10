@@ -41,17 +41,17 @@ const Cart = (props) => {
     // }
 
     // return html
-    let totalQuantity=0;
-    for(let i=0; i< cart.length; i++){
-        totalQuantity=totalQuantity+ cart[i].quantity;
-    }
+    // let totalQuantity=0;
+    // for(let i=0; i< cart.length; i++){
+    //     totalQuantity=totalQuantity+ cart[i].quantity;
+    // }
 
 
     return (
         <div>
            <h3>Order Summery</h3>
             <p>Items ordered : {props.cart.length}</p>
-            <p>Total Quantity: {totalQuantity}</p>
+            {/* <p>Total Quantity: {totalQuantity}</p> */}
             <p>Total Price : ${total.toFixed(2)}</p>
             <p>Shipping Cost : ${shipping}</p>
             <p>Estimated Tax: ${tax}</p>
